@@ -19,7 +19,7 @@ pixelMap = image.load()
 
 if mode == '0':
     msg = input('Please enter the message [max length: ' + str(x * y) + ']: ').lower()
-    msg = msg.replace(' ', '{').replace('.', '|')
+    msg = msg.replace(' ', '{').replace('.', '|').replace(',', '}').replace('?', '~')
     if len(msg) < x * y:
         msg += "{" * (x * y - len(msg))
 
@@ -81,7 +81,8 @@ else:
             ch = r + '' + g + '' + b
             ch = int(ch, 2) + 96
             msgList += chr(ch)
-            msgList = msgList.replace('{', ' ').replace('|', '.')
-            msgList.strip()
+
+    msgList = msgList.replace('{', ' ').replace('|', '.').replace('}', ',').replace('~', '?')
+    msgList.strip()
 
     print(msgList)
